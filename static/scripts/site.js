@@ -1,21 +1,23 @@
 // static/scripts/site.js
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize tooltips
-    const tooltipTriggerList = document    // Load nav
-    // Load header
-    fetch('main/head.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('head-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
 
     // Load nav
     fetch('main/nav.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
             const header = document.getElementById('nav-placeholder');
+            if (header) header.innerHTML = data;
+        })
+        .catch(() => {});
+
+    // Load Main Content
+    fetch('pages/main/welcome')
+        .then(res => res.ok ? res.text() : Promise.reject(res))
+        .then(data => {
+            const header = document.getElementById('main-content-placeholder');
             if (header) header.innerHTML = data;
         })
         .catch(() => {});
@@ -80,7 +82,45 @@ document.addEventListener('DOMContentLoaded', function() {
         return text.replace(new RegExp(`(${safeTerm})`, 'gi'), '<mark>$1</mark>');
     }
 
-    // Load all page components
+    // Initialize Bootstrap components after content load
+    function initializeBootstrapComponents() {
+        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltips.forEach(el => new bootstrap.Tooltip(el));
+
+        const popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+        popovers.forEach(el => new bootstrap.Popover(el));
+
+        const dropdowns = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+        dropdowns.forEach(el => new bootstrap.Dropdown(el));
+    }
+
+    // Handle navigation clicks
+    document.addEventListener('click', function(e) {
+        // Check if the clicked element is a link within our site
+        const link = e.target.closest('a');
+        if (link && 
+            link.href && 
+            link.href.startsWith(window.location.origin) && 
+            !link.hasAttribute('data-no-dynamic') && 
+            !link.getAttribute('target')) {
+            
+            e.preventDefault();
+            const url = link.href;
+            
+            // Update URL without reload
+            window.history.pushState({}, '', url);
+            
+            // Load the content
+            loadContent(url);
+        }
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function() {
+        loadContent(window.location.href);
+    });
+
+    // Load page components
     Promise.all([
         fetch('main/nav.html').then(res => res.ok ? res.text() : Promise.reject(res)),
         fetch('main/head.html').then(res => res.ok ? res.text() : Promise.reject(res)),

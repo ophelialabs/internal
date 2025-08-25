@@ -1,0 +1,130 @@
+    <div id="main-content-placeholder">
+        <main class="container-fluid p-0">
+            <!-- Hero Section -->
+            <section class="hero-section text-light py-5" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);">
+                <div class="container py-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h1 class="display-4 fw-bold mb-4">Welcome to Senior Engineering Portal</h1>
+                            <p class="lead mb-4">Access enterprise-level resources, documentation, and tools for cloud, AI, and modern web development.</p>
+                            <div class="d-flex gap-3">
+                                <a href="pages/docs/best-practices.html" class="btn btn-light btn-lg">
+                                    <i class="bi bi-book me-2"></i>Best Practices
+                                </a>
+                                <a href="pages/docs/architecture.html" class="btn btn-outline-light btn-lg">
+                                    <i class="bi bi-diagram-3 me-2"></i>Architecture
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block text-center">
+                            <i class="bi bi-code-square" style="font-size: 15rem; opacity: 0.2;"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Access Section -->
+            <section class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5">Quick Access</h2>
+                    <div class="row g-4">
+                        <!-- Documentation -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-4">
+                                    <i class="bi bi-book text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="card-title">Documentation</h5>
+                                    <p class="card-text">Access comprehensive guides, best practices, and API references.</p>
+                                    <a href="pages/docs/documentation.html" class="btn btn-outline-primary">View Docs</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projects -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-4">
+                                    <i class="bi bi-folder text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="card-title">Projects</h5>
+                                    <p class="card-text">Explore enterprise, cloud, and security projects.</p>
+                                    <a href="nav/projects/enterprise.html" class="btn btn-outline-primary">View Projects</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resources -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-4">
+                                    <i class="bi bi-grid text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="card-title">Resources</h5>
+                                    <p class="card-text">Access development tools, certifications, and learning materials.</p>
+                                    <a href="#" class="btn btn-outline-primary">View Resources</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GitHub -->
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center p-4">
+                                    <i class="bi bi-github text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="card-title">GitHub</h5>
+                                    <p class="card-text">Browse our repositories and contribute to projects.</p>
+                                    <a href="https://github.com/OpheliaLabs" target="_blank" class="btn btn-outline-primary">View GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Updates Section -->
+            <section class="py-5 bg-light">
+                <div class="container">
+                    <h2 class="text-center mb-5">Latest Updates</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-primary me-2">New</span>
+                                        <small class="text-muted">August 25, 2025</small>
+                                    </div>
+                                    <h5 class="card-title">Best Practices Guide Updated</h5>
+                                    <p class="card-text">New security guidelines and cloud architecture patterns added to the documentation.</p>
+                                    <a href="pages/docs/best-practices.html" class="btn btn-link p-0">Read More →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-success me-2">Updated</span>
+                                        <small class="text-muted">August 23, 2025</small>
+                                    </div>
+                                    <h5 class="card-title">API Documentation Enhanced</h5>
+                                    <p class="card-text">Improved API reference documentation with new interactive examples.</p>
+                                    <a href="pages/docs/api-reference.html" class="btn btn-link p-0">Read More →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="badge bg-info me-2">Coming Soon</span>
+                                        <small class="text-muted">September 1, 2025</small>
+                                    </div>
+                                    <h5 class="card-title">New Architecture Diagrams</h5>
+                                    <p class="card-text">Interactive system architecture diagrams coming to the documentation.</p>
+                                    <a href="pages/docs/architecture.html" class="btn btn-link p-0">Preview →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
