@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(() => {});
 
     // Load Main Content
-    fetch('pages/main/welcome')
+    fetch('main/main.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
             const header = document.getElementById('main-content-placeholder');
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load page components
     Promise.all([
         fetch('main/nav.html').then(res => res.ok ? res.text() : Promise.reject(res)),
-        fetch('main/head.html').then(res => res.ok ? res.text() : Promise.reject(res)),
+        fetch('main/welcome.html').then(res => res.ok ? res.text() : Promise.reject(res)),
         fetch('main/footer.html').then(res => res.ok ? res.text() : Promise.reject(res))
     ])
     .then(([navContent, headContent, footerContent]) => {
