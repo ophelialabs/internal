@@ -227,10 +227,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Load header
-    fetch('header.html')
+    fetch('head.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
             const header = document.getElementById('header-placeholder');
+            if (header) header.innerHTML = data;
+        })
+        .catch(() => {});
+
+    // Load nav
+    fetch('nav.html')
+        .then(res => res.ok ? res.text() : Promise.reject(res))
+        .then(data => {
+            const header = document.getElementById('nav-placeholder');
             if (header) header.innerHTML = data;
         })
         .catch(() => {});
