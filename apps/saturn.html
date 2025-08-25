@@ -119,6 +119,12 @@
         window.map3D = null;
 
         async function init() {
+            // Ensure Google Maps API is ready
+            if (typeof google === 'undefined' || !google.maps) {
+                setTimeout(init, 100);
+                return;
+            }
+            
             const { Map3DElement, MapMode, Marker3DInteractiveElement } = await google.maps.importLibrary("maps3d");
             const { PinElement } = await google.maps.importLibrary('marker');
 
@@ -330,11 +336,10 @@
             updateAlerts();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            init();
-            document.getElementById('move-btn').onclick = makeRandomMove;
-            document.getElementById('reset-btn').onclick = resetGame;
-        });
+        // Initialize immediately since content is loaded dynamically
+        init();
+        document.getElementById('move-btn').onclick = makeRandomMove;
+        document.getElementById('reset-btn').onclick = resetGame;
     </script>
 </body>
 </html>

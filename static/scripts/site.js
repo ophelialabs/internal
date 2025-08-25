@@ -232,3 +232,121 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error initializing search:', error);
         });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Cache for loaded content
+    const contentCache = new Map();
+
+    // Initialize Bootstrap components
+    function initializeBootstrapComponents(container = document) {
+        // Initialize all Bootstrap components
+        ['tooltip', 'popover', 'dropdown', 'modal', 'offcanvas'].forEach(type => {
+            const elements = container.querySelectorAll(`[data-bs-toggle="${type}"]`);
+            elements.forEach(el => new bootstrap[type.charAt(0).toUpperCase() + type.slice(1)](el));
+        });
+
+        // Initialize carousels
+        container.querySelectorAll('.carousel').forEach(el => new bootstrap.Carousel(el));
+    }
+
+    // Load and cache content
+    async function loadContent(url, targetId) {
+        try {
+            let content;
+            const adjustedUrl = url.startsWith('/') ? url : getRelativePath() + url;
+
+            if (contentCache.has(adjustedUrl)) {
+                content = contentCache.get(adjustedUrl);
+            } else {
+                const response = await fetch(adjustedUrl);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                content = await response.text();
+                contentCache.set(adjustedUrl, content);
+            }
+
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.innerHTML = content;
+                initializeBootstrapComponents(target);
+                updateActiveStates(adjustedUrl);
+                window.scrollTo(0, 0);
+            }
+        } catch (error) {
+            console.error('Error loading content:', error);
+        }
+    }
+
+    // Get relative path based on current URL depth
+    function getRelativePath() {
+        const pathDepth = window.location.pathname.split('/').length - 1;
+        return pathDepth > 2 ? '../'.repeat(pathDepth - 2) : '';
+    }
+
+    // Update active states in navigation
+    function updateActiveStates(url) {
+        document.querySelectorAll('.nav-link.active, .dropdown-item.active').forEach(el => 
+            el.classList.remove('active')
+        );
+
+        document.querySelectorAll('a').forEach(link => {
+            if (link.href === url || link.href === window.location.href) {
+                link.classList.add('active');
+                const dropdownParent = link.closest('.dropdown');
+                if (dropdownParent) {
+                    dropdownParent.querySelector('.nav-link').classList.add('active');
+                }
+            }
+        });
+    }
+
+    // Handle navigation clicks
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a');
+        if (link && 
+            link.href && 
+            link.href.startsWith(window.location.origin) && 
+            !link.hasAttribute('data-no-dynamic') && 
+            !link.getAttribute('target')) {
+            
+            e.preventDefault();
+            const url = new URL(link.href);
+            const relativePath = url.pathname;
+            
+            window.history.pushState({url: relativePath}, '', url);
+            loadContent(relativePath, 'main-content-placeholder');
+        }
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', e => {
+        if (e.state?.url) {
+            loadContent(e.state.url, 'main-content-placeholder');
+        }
+    });
+
+    // Initialize app
+    async function initializeApp() {
+        try {
+            await Promise.all([
+                loadContent('main/nav.html', 'nav-placeholder'),
+                loadContent('main/main.html', 'main-content-placeholder'),
+                loadContent('main/footer.html', 'footer-placeholder')
+            ]);
+
+            // Update year in footer
+            const yearEl = document.getElementById('year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+
+            // Set initial active states
+            updateActiveStates(window.location.href);
+        } catch (error) {
+            console.error('Error initializing app:', error);
+        }
+    }
+
+    // Start the application
+    initializeApp();
+});
+
+
