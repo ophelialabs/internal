@@ -25,6 +25,30 @@ body {
     border-radius: 16px 16px 0 0;
     background: #2564cf;
     color: #fff;
+    font-size: 0.9375rem;
+}
+
+.fluent-footer h6 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.fluent-footer .hover-white {
+    transition: color 0.2s ease;
+}
+
+.fluent-footer .hover-white:hover {
+    color: #fff !important;
+}
+
+.fluent-footer .list-inline-item:not(:last-child) {
+    margin-right: 1.5rem;
+}
+
+@media (max-width: 767.98px) {
+    .fluent-footer .col-6 {
+        margin-bottom: 2rem;
+    }
 }
 pre, code {
     border-radius: 8px;
