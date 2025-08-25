@@ -26,20 +26,76 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fluent-navbar bg-primary mb-4">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="../../../index.html">
-                <svg width="32" height="32" fill="#fff" class="me-2" viewBox="0 0 16 16"><rect width="16" height="16" rx="4"/></svg>
+                <!-- <svg width="32" height="32" fill="#fff" class="me-2" viewBox="0 0 16 16"><rect width="16" height="16" rx="4"/></svg> -->
+                <i class="bi bi-code-square me-2"></i>
                 <span style="font-weight:600;letter-spacing:0.03em;">Ophelia</span>
             </a>
+
+            <!-- Search bar -->
+        <form class="d-flex ms-auto" role="search" onsubmit="return false;">
+            <input class="form-control me-2" type="search" id="searchInput" placeholder="Search..." aria-label="Search">
+        </form>
+
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar-nav ms-auto">
-                    <a class="nav-link fluent-btn" href="#">Generator</a>
-                    <a class="nav-link fluent-btn" href="#">Download</a>
-                    <a class="nav-link fluent-btn" href="#" target="_blank" rel="noopener noreferrer">Docs</a>
-                </div>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">Jobs</h6></li>
+                            <li><a class="dropdown-item" href="https://swelist.com/">Swe list</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            
+                            <li><h6 class=dropdown-header">Certs</h6></li>
+                            <li><a class="dropdown-item href="#>Architecture</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Projects Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Projects
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="nav/projects/enterprise.html">Enterprise Solutions</a></li>
+                        <li><a class="dropdown-item" href="nav/projects/cloud.html">Cloud Architecture</a></li>
+                        <li><a class="dropdown-item" href="nav/projects/security.html">Security Implementation</a></li>
+                    </ul>
+                </li>
+
+                <!-- Apps Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Apps
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://clickup.com">ClickUp</a></li>
+                        <li><a class="dropdown-item" href="nav/apps/rss-atom.html">Rss-Atom</a></li>
+                        <li><a class="dropdown-item" href="nav/apps/saturn.html">Saturn</a></li>
+                        <li><a class="dropdown-item" href="nav/apps/neptune.html">Neptune</a></li>
+                        <li><a class="dropdown-item" href="nav/apps/pluto.html">Pluto</a></li>
+                    </ul>
+                </li>
+
+                <!-- Professional Links -->
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jlabclouds" target="_blank">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ophelialabs.github.io/internal/login.html" target="_blank">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
             </div>
         </div>
     </nav>
