@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (e.key === 'Enter') {
                         const query = encodeURIComponent(this.value.trim());
                         if (query) {
-                            window.location.href = `search.html?q=${query}`;
+                            window.location.href = `main/search.html?q=${query}`;
                         }
                     }
                 });
