@@ -78,7 +78,7 @@ pre, code {
 /* Responsive search bar and suggestion box */
 @media (max-width: 600px) {
     .search-bar input {
-        width: 100% !important;
+        width: 50% !important;
         min-width: 0;
     }
     .list-group.position-absolute {
