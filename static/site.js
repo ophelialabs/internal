@@ -11,21 +11,21 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(() => {});
 
-    // Load footer
-    fetch('main/footer.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const footer = document.getElementById('footer-placeholder');
-            if (footer) footer.innerHTML = data;
-        })
-        .catch(() => {});
-
     // Load nav
     fetch('main/nav.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
             const header = document.getElementById('nav-placeholder');
             if (header) header.innerHTML = data;
+        })
+        .catch(() => {});
+
+    // Load footer
+    fetch('main/footer.html')
+        .then(res => res.ok ? res.text() : Promise.reject(res))
+        .then(data => {
+            const footer = document.getElementById('footer-placeholder');
+            if (footer) footer.innerHTML = data;
         })
         .catch(() => {});
     ('[data-bs-toggle="tooltip"]');
