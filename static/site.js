@@ -1,7 +1,34 @@
 // static/scripts/site.js
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize tooltips
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipTriggerList = document    // Load nav
+    // Load header
+    fetch('main/head.html')
+        .then(res => res.ok ? res.text() : Promise.reject(res))
+        .then(data => {
+            const header = document.getElementById('head-placeholder');
+            if (header) header.innerHTML = data;
+        })
+        .catch(() => {});
+
+    // Load footer
+    fetch('main/footer.html')
+        .then(res => res.ok ? res.text() : Promise.reject(res))
+        .then(data => {
+            const footer = document.getElementById('footer-placeholder');
+            if (footer) footer.innerHTML = data;
+        })
+        .catch(() => {});
+
+    // Load nav
+    fetch('main/nav.html')
+        .then(res => res.ok ? res.text() : Promise.reject(res))
+        .then(data => {
+            const header = document.getElementById('nav-placeholder');
+            if (header) header.innerHTML = data;
+        })
+        .catch(() => {});
+    ('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
 
     // Initialize popovers
@@ -53,14 +80,28 @@ document.addEventListener('DOMContentLoaded', function() {
         return text.replace(new RegExp(`(${safeTerm})`, 'gi'), '<mark>$1</mark>');
     }
 
-    // Load header
-    fetch('nav.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('nav-placeholder');
-            if (header) header.innerHTML = data;
+    // Load all page components
+    Promise.all([
+        fetch('main/nav.html').then(res => res.ok ? res.text() : Promise.reject(res)),
+        fetch('main/head.html').then(res => res.ok ? res.text() : Promise.reject(res)),
+        fetch('main/footer.html').then(res => res.ok ? res.text() : Promise.reject(res))
+    ])
+    .then(([navContent, headContent, footerContent]) => {
+        // Insert the content
+        const navPlaceholder = document.getElementById('nav-placeholder');
+        const headPlaceholder = document.getElementById('head-placeholder');
+        const footerPlaceholder = document.getElementById('footer-placeholder');
 
-            // Attach search bar event listener AFTER header loads
+        if (navPlaceholder) navPlaceholder.innerHTML = navContent;
+        if (headPlaceholder) headPlaceholder.innerHTML = headContent;
+        if (footerPlaceholder) footerPlaceholder.innerHTML = footerContent;
+
+        // Initialize search after components are loaded
+        initializeSearch();
+    })
+    .catch(error => {
+        console.error('Error loading page components:', error);
+    });
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
                 // Accessibility
@@ -118,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     loadingIndicator.style.display = 'inline-block';
 
-                    fetch('/static/content/site-index.json')
+                    fetch('site-index.json')
                         .then(res => res.json())
                         .then(pages => {
                             const results = pages.filter(page =>
@@ -141,38 +182,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (e.key === 'Enter') {
                         const query = encodeURIComponent(this.value.trim());
                         if (query) {
-                            window.location.href = `/search.html?q=${query}`;
+                            window.location.href = `search.html?q=${query}`;
                         }
                     }
                 });
             }
         })
-        .catch(() => {});
+        .catch(error => {
+            console.error('Error initializing search:', error);
+        });
 
-    // Load header
-    fetch('head.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('head-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
-
-    // Load nav
-    fetch('nav.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('nav-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
-
-    // Load footer
-    fetch('main/footer.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const footer = document.getElementById('footer-placeholder');
-            if (footer) footer.innerHTML = data;
-        })
-        .catch(() => {});
-});
