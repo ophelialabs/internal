@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Load header
-    fetch('header.html')
+    fetch('nav.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
-            const header = document.getElementById('header-placeholder');
+            const header = document.getElementById('nav-placeholder');
             if (header) header.innerHTML = data;
 
             // Attach search bar event listener AFTER header loads
@@ -149,88 +149,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(() => {});
 
-    // Load Pipeline
-    fetch('pipeline/tabs.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('pipeline-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
-
-    // Load Tech Stack
-    fetch('stack/stack.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('techstack-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
-
-    // Load footer
-    fetch('main/footer.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const footer = document.getElementById('footer-placeholder');
-            if (footer) footer.innerHTML = data;
-        })
-        .catch(() => {});
-});
-// static/scripts/site.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize tooltips
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
-
-    // Initialize popovers
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    [...popoverTriggerList].forEach(el => new bootstrap.Popover(el));
-
-    // Initialize modals
-    const modalTriggerList = document.querySelectorAll('[data-bs-toggle="modal"]');
-    [...modalTriggerList].forEach(el => new bootstrap.Modal(el));
-
-    // Initialize dropdowns
-    const dropdownTriggerList = document.querySelectorAll('[data-bs-toggle="dropdown"]');
-    [...dropdownTriggerList].forEach(el => new bootstrap.Dropdown(el));
-
-    // Initialize sidebars (offcanvas)
-    const sidebarTriggerList = document.querySelectorAll('[data-bs-toggle="offcanvas"]');
-    [...sidebarTriggerList].forEach(el => new bootstrap.Offcanvas(el));
-
-    // Initialize carousels
-    const carouselTriggerList = document.querySelectorAll('.carousel');
-    [...carouselTriggerList].forEach(el => new bootstrap.Carousel(el));
-
-    // Set current year
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-
-    // Enhanced search functionality
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', debounce(function(e) {
-            // Implement advanced search logic here
-            console.log('Searching:', e.target.value);
-        }, 300));
-    }
-
-    // Debounce function
-    function debounce(func, wait) {
-        let timeout;
-        return function(...args) {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
-        };
-    }
-
     // Load header
     fetch('head.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
-            const header = document.getElementById('header-placeholder');
+            const header = document.getElementById('head-placeholder');
             if (header) header.innerHTML = data;
         })
         .catch(() => {});
@@ -240,24 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
             const header = document.getElementById('nav-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
-
-    // Load Pipeline
-    fetch('pipeline/tabs.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('pipeline-placeholder');
-            if (header) header.innerHTML = data;
-        })
-        .catch(() => {});
-
-    // Load Tech Stack
-    fetch('stack/stack.html')
-        .then(res => res.ok ? res.text() : Promise.reject(res))
-        .then(data => {
-            const header = document.getElementById('techstack-placeholder');
             if (header) header.innerHTML = data;
         })
         .catch(() => {});
