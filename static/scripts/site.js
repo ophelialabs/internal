@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(() => {});
 
-    // Load Main Content
+    // Load main
     fetch('main/main.html')
         .then(res => res.ok ? res.text() : Promise.reject(res))
         .then(data => {
