@@ -11,7 +11,7 @@
             </form>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" style="width: 24px; height: 24px;"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto align-items-center">
@@ -32,23 +32,49 @@
                     <!-- Projects Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-p-square"> Projects</i>
+                            <i class="bi bi-folder me-1"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="nav/projects/enterprise.html">Enterprise Solutions</a></li>
-                            <li><a class="dropdown-item" href="nav/projects/cloud.html">Cloud Architecture</a></li>
-                            <li><a class="dropdown-item" href="nav/projects/security.html">Security Implementation</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end py-0" style="min-width: 330px;">
+                            <div class="p-3">
+                                <h6 class="dropdown-header px-0 mb-2">Projects</h6>
+                                <div class="row g-3">
+                                    <div class="col-4">
+                                        <a href="nav/projects/enterprise.html" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-building text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Enterprise</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="nav/projects/cloud.html" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-cloud-fill text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Cloud</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="nav/projects/security.html" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-shield-lock-fill text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Security</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </li>
 
                     <!-- Apps Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-grid me-1"></i>Apps
+                            <i class="bi bi-grid me-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end py-0" style="min-width: 330px;">
                             <div class="p-3">
-                                <h6 class="dropdown-header px-0 mb-2">Quick Access</h6>
+                                <h6 class="dropdown-header px-0 mb-2">Apps</h6>
                                 <div class="row g-3">
                                     <div class="col-4">
                                         <a href="#" class="text-decoration-none">
@@ -95,27 +121,95 @@
                         </ul>
                     </li>
 
-                    <!-- Professional Links -->
+                    <!-- Github -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="bi bi-github"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="https://github.com/jlabclouds" target="_blank">Jlab</a></li>
-                            <li><a class="dropdown-item" href="https://github.com/OpheliaLabs" target="_blank">Ophelia</a></li>
-                            <li><a class="dropdown-item" href="https://github.com/IBM" target="_blank">IBM</a></li>
-                        </ul>   
+                        <ul class="dropdown-menu dropdown-menu-end py-0" style="min-width: 330px;">
+                            <div class="p-3">
+                                <h6 class="dropdown-header px-0 mb-2">GitHub Repositories</h6>
+                                <div class="row g-3">
+                                    <div class="col-4">
+                                        <a href="https://github.com/jlabclouds" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-code-square text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">JLab</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="https://github.com/OpheliaLabs" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-code-branch text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Ophelia</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="https://github.com/IBM" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-git text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">IBM</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
                     </li>
+
+                    <!-- Account -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-fill-lock"></i>
+                            <i class="bi bi-person-fill-lock"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" target="_blank">Broadcom</a></li>
-                            <li><a class="dropdown-item" href="#" target="_blank">Oracle</a></li>
-                            <li><a class="dropdown-item" href="#" target="_blank">IBM</a></li>
-                            <li><a class="dropdown-item" href="#" target="_blank">Amazon</a></li>
-                            <li><a class="dropdown-item" href="#" target="_blank">ServiceNow</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end py-0" style="min-width: 330px;">
+                            <div class="p-3">
+                                <h6 class="dropdown-header px-0 mb-2">Account Access</h6>
+                                <div class="row g-3">
+                                    <div class="col-4">
+                                        <a href="#" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-globe text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Broadcom</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-database-fill text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Oracle</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-cpu text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">IBM</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-cloud-arrow-up text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">Amazon</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#" target="_blank" class="text-decoration-none">
+                                            <div class="app-card p-2 rounded text-center">
+                                                <i class="bi bi-gear-fill text-primary mb-2" style="font-size: 1.5rem;"></i>
+                                                <div class="small text-body-secondary">ServiceNow</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </li>
                 </ul>
