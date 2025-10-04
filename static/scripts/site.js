@@ -53,6 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const carouselTriggerList = document.querySelectorAll('.carousel');
     [...carouselTriggerList].forEach(el => new bootstrap.Carousel(el));
 
+    // Set current year
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
     // Debounce function
     function debounce(func, wait) {
         let timeout;
@@ -75,6 +81,44 @@ document.addEventListener('DOMContentLoaded', function() {
         const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         return text.replace(new RegExp(`(${safeTerm})`, 'gi'), '<mark>$1</mark>');
     }
+
+    // Initialize Bootstrap components after content load
+    function initializeBootstrapComponents() {
+        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltips.forEach(el => new bootstrap.Tooltip(el));
+
+        const popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+        popovers.forEach(el => new bootstrap.Popover(el));
+
+        const dropdowns = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+        dropdowns.forEach(el => new bootstrap.Dropdown(el));
+    }
+
+    // Handle navigation clicks
+    document.addEventListener('click', function(e) {
+        // Check if the clicked element is a link within our site
+        const link = e.target.closest('a');
+        if (link && 
+            link.href && 
+            link.href.startsWith(window.location.origin) && 
+            !link.hasAttribute('data-no-dynamic') && 
+            !link.getAttribute('target')) {
+            
+            e.preventDefault();
+            const url = link.href;
+            
+            // Update URL without reload
+            window.history.pushState({}, '', url);
+            
+            // Load the content
+            loadContent(url);
+        }
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function() {
+        loadContent(window.location.href);
+    });
 
     // Load page components
     Promise.all([
@@ -253,6 +297,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Handle navigation clicks
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a');
+        if (link && 
+            link.href && 
+            link.href.startsWith(window.location.origin) && 
+            !link.hasAttribute('data-no-dynamic') && 
+            !link.getAttribute('target')) {
+            
+            e.preventDefault();
+            const url = new URL(link.href);
+            const relativePath = url.pathname;
+            
+            window.history.pushState({url: relativePath}, '', url);
+            loadContent(relativePath, 'main-content-placeholder');
+        }
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', e => {
+        if (e.state?.url) {
+            loadContent(e.state.url, 'main-content-placeholder');
+        }
+    });
 
     // Initialize app
     async function initializeApp() {
