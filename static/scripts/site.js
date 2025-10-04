@@ -1,3 +1,4 @@
+// static/scripts/site.js
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize tooltips
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -123,14 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (headPlaceholder) headPlaceholder.innerHTML = headContent;
         if (footerPlaceholder) footerPlaceholder.innerHTML = footerContent;
 
-        // Initialize search after components are loaded
-        initializeSearch();
-    })
-    .catch(error => {
-        console.error('Error loading page components:', error);
-    });       
-
 document.addEventListener('DOMContentLoaded', function() {
+    // Cache for loaded content
+    const contentCache = new Map();
 
     // Initialize Bootstrap components
     function initializeBootstrapComponents(container = document) {
@@ -171,23 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Update active states in navigation
-    function updateActiveStates(url) {
-        document.querySelectorAll('.nav-link.active, .dropdown-item.active').forEach(el => 
-            el.classList.remove('active')
-        );
-
-        document.querySelectorAll('a').forEach(link => {
-            if (link.href === url || link.href === window.location.href) {
-                link.classList.add('active');
-                const dropdownParent = link.closest('.dropdown');
-                if (dropdownParent) {
-                    dropdownParent.querySelector('.nav-link').classList.add('active');
-                }
-            }
-        });
-    }
-
     // Initialize app
     async function initializeApp() {
         try {
@@ -203,15 +182,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 yearEl.textContent = new Date().getFullYear();
             }
 
-            // Set initial active states
-            updateActiveStates(window.location.href);
-        } catch (error) {
-            console.error('Error initializing app:', error);
-        }
-    }
-
     // Start the application
     initializeApp();
 });
 
-})
+
