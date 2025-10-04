@@ -58,12 +58,54 @@ document.addEventListener('DOMContentLoaded', function() {
         yearEl.textContent = new Date().getFullYear();
     }
 
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
     // Sanitize HTML (basic)
     function sanitizeHTML(str) {
         const temp = document.createElement('div');
         temp.textContent = str;
         return temp.innerHTML;
     }
+
+    // Initialize Bootstrap components after content load
+    function initializeBootstrapComponents() {
+        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltips.forEach(el => new bootstrap.Tooltip(el));
+
+        const popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+        popovers.forEach(el => new bootstrap.Popover(el));
+
+        const dropdowns = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+        dropdowns.forEach(el => new bootstrap.Dropdown(el));
+    }
+
+    // Handle navigation clicks
+    document.addEventListener('click', function(e) {
+        // Check if the clicked element is a link within our site
+        const link = e.target.closest('a');
+        if (link && 
+            link.href && 
+            link.href.startsWith(window.location.origin) && 
+            !link.hasAttribute('data-no-dynamic') && 
+            !link.getAttribute('target')) {
+            
+            e.preventDefault();
+            const url = link.href;
+            
+            // Update URL without reload
+            window.history.pushState({}, '', url);
+            
+            // Load the content
+            loadContent(url);
+        }
+    });
 
     // Load page components
     Promise.all([
@@ -81,6 +123,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (headPlaceholder) headPlaceholder.innerHTML = headContent;
         if (footerPlaceholder) footerPlaceholder.innerHTML = footerContent;
 
+        // Initialize search after components are loaded
+        initializeSearch();
+    })
+    .catch(error => {
+        console.error('Error loading page components:', error);
+    });       
+
+document.addEventListener('DOMContentLoaded', function() {
+
     // Initialize Bootstrap components
     function initializeBootstrapComponents(container = document) {
         // Initialize all Bootstrap components
@@ -93,7 +144,51 @@ document.addEventListener('DOMContentLoaded', function() {
         container.querySelectorAll('.carousel').forEach(el => new bootstrap.Carousel(el));
     }
 
-// Initialize app
+    // Load and cache content
+    async function loadContent(url, targetId) {
+        try {
+            let content;
+            const adjustedUrl = url.startsWith('/') ? url : getRelativePath() + url;
+
+            if (contentCache.has(adjustedUrl)) {
+                content = contentCache.get(adjustedUrl);
+            } else {
+                const response = await fetch(adjustedUrl);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                content = await response.text();
+                contentCache.set(adjustedUrl, content);
+            }
+
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.innerHTML = content;
+                initializeBootstrapComponents(target);
+                updateActiveStates(adjustedUrl);
+                window.scrollTo(0, 0);
+            }
+        } catch (error) {
+            console.error('Error loading content:', error);
+        }
+    }
+
+    // Update active states in navigation
+    function updateActiveStates(url) {
+        document.querySelectorAll('.nav-link.active, .dropdown-item.active').forEach(el => 
+            el.classList.remove('active')
+        );
+
+        document.querySelectorAll('a').forEach(link => {
+            if (link.href === url || link.href === window.location.href) {
+                link.classList.add('active');
+                const dropdownParent = link.closest('.dropdown');
+                if (dropdownParent) {
+                    dropdownParent.querySelector('.nav-link').classList.add('active');
+                }
+            }
+        });
+    }
+
+    // Initialize app
     async function initializeApp() {
         try {
             await Promise.all([
@@ -101,6 +196,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadContent('main/main.html', 'main-content-placeholder'),
                 loadContent('main/footer.html', 'footer-placeholder')
             ]);
+
+            // Update year in footer
+            const yearEl = document.getElementById('year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
 
             // Set initial active states
             updateActiveStates(window.location.href);
@@ -111,4 +212,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start the application
     initializeApp();
-})})
+});
+
+})
