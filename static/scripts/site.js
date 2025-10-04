@@ -111,4 +111,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start the application
     initializeApp();
-});
+})})
