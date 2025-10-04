@@ -176,12 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadContent('main/footer.html', 'footer-placeholder')
             ]);
 
-            // Update year in footer
-            const yearEl = document.getElementById('year');
-            if (yearEl) {
-                yearEl.textContent = new Date().getFullYear();
-            }
-
     // Start the application
     initializeApp();
 });
