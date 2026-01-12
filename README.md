@@ -2,12 +2,14 @@ tree
 
 # Category 1
 ## Subcategory 1-1
-Az | [GCP](cloud.console) | [AWS](https://aws.amazon.com/console/) | [OCI]() | [APPLE]()
+[Az]() | [IBM]() | [GCP](cloud.console) | [AWS](https://aws.amazon.com/console/) | [OCI]() | [APPLE]()
  - ** Use Account setup **
 ## Subcategory 1-2
- - ** Use Pipeline **
+ - ** Pipeline **
+[AZ](https://github.com/microsoft) | [IBM](https://github.com/IBM) | [GCP](https://github.com/GoogleCloudPlatform) | [AWS](https://github.com/aws) | [OCI](https://github.com/oracle) | [APPLE](https://github.com/APPLE)
 
 # Category 2
 ## Subcategory 2-1
- - ** Organize Tools **
+  - ** Github & Code Repos **
+[AZ](https://github.com/microsoft) | [IBM](https://github.com/IBM) | [GCP](https://github.com/GoogleCloudPlatform) | [AWS](https://github.com/aws) | [OCI](https://github.com/oracle) | [APPLE](https://github.com/APPLE)
    
