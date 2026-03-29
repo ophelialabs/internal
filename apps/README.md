@@ -1,0 +1,3 @@
+- Use JSON for Country IDs until API is created, utilized.
+- Easy, Medium, Hard selections for front-facing.
+- Rewrite for mobile-friendliness
