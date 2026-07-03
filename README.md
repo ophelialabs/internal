@@ -1,5 +1,3 @@
-tree
-
 # Category 1
 ## Subcategory 1-1
 [Az]() | [IBM]() | [GCP](cloud.console) | [AWS](https://aws.amazon.com/console/) | [OCI]() | [APPLE]()
